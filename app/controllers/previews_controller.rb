@@ -12,6 +12,7 @@ class PreviewsController < ApplicationController
 
 	def show
 		@preview = Preview.find(params[:id])
+		Rails.logger.info "PREVIEW: in previe PreviewsController @preview: #{@preview}"
 		respond_with @preview
 	end
 end

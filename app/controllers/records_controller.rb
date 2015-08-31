@@ -19,6 +19,8 @@ class RecordsController < ApplicationController
 
     @preview_id = @previewer.preview_id
 
+    Rails.logger.info "PREVIEW: in RecordsController @previewer: #{@previewer}"
+
     render layout: false
   end
 
