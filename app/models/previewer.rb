@@ -23,7 +23,6 @@ class Previewer
   end
 
   def create_preview_job
-    Rails.logger.info "PREVIEW: in create_preview_job"
     response = RestClient.post("#{ENV["WORKER_HOST"]}/previews", {
       preview: {
         format: format.to_s,
@@ -38,7 +37,6 @@ class Previewer
       }
     })
 
-    Rails.logger.info "PREVIEW: rewsponse: #{response}"    
     @preview_id = JSON.parse(response)["_id"]
   end
 
