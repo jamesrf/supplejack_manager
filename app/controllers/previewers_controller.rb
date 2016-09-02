@@ -41,9 +41,11 @@ class PreviewersController < ApplicationController
   # @author Eddie
   # @last_modified Eddie
   def validate_parser_content
-    eval params[:parser][:content]
-    @parser_error = false
-  rescue => error
-    @parser_error = { type: error.class, message: error.message }
+    begin
+      eval params[:parser][:content]
+      @parser_error = false
+    rescue => error
+      @parser_error = { type: error.class, message: error.message }
+    end
   end
 end
