@@ -1,14 +1,14 @@
 # The majority of The Supplejack Manager code is Crown copyright (C) 2014, New Zealand Government,
-# and is licensed under the GNU General Public License, version 3. Some components are 
-# third party components that are licensed under the MIT license or otherwise publicly available. 
-# See https://github.com/DigitalNZ/supplejack_manager for details. 
-# 
-# Supplejack was created by DigitalNZ at the National Library of NZ and the Department of Internal Affairs. 
+# and is licensed under the GNU General Public License, version 3. Some components are
+# third party components that are licensed under the MIT license or otherwise publicly available.
+# See https://github.com/DigitalNZ/supplejack_manager for details.
+#
+# Supplejack was created by DigitalNZ at the National Library of NZ and the Department of Internal Affairs.
 # http://digitalnz.org/supplejack
 
 module ApplicationHelper
   include EnvironmentHelpers
-  
+
   def display_base_errors resource
     return '' if (resource.errors.empty?) or (resource.errors[:base].empty?)
     messages = resource.errors[:base].map { |msg| content_tag(:p, msg) }.join
@@ -31,7 +31,7 @@ module ApplicationHelper
     parser = Parser.find(parser_id) rescue nil
     if parser.present?
       format = parser.xml? ? :xml : :json
-      raw_data = JSON.pretty_generate(JSON.parse(raw_data)) if format == :json
+      raw_data = JSON.pretty_generate(JSON.parse(raw_data.to_json)) if format == :json
       CodeRay.scan(raw_data, format).html(line_numbers: :table).html_safe
     else
       raw_data
