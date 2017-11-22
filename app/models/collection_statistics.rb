@@ -11,6 +11,7 @@ class CollectionStatistics < ActiveResource::Base
 
   self.site = ENV["WORKER_HOST"]
   self.user = ENV["WORKER_API_KEY"]
+  headers['Authorization'] = "Token token=#{ENV['WORKER_API_KEY']}"
 
   def self.index_statistics(statistics)
 

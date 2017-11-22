@@ -11,6 +11,7 @@ class LinkCheckRule < ActiveResource::Base
   
   self.site = ENV["WORKER_HOST"]
   self.user = ENV["WORKER_API_KEY"]
+  headers['Authorization'] = "Token token=#{ENV['WORKER_API_KEY']}"
 
   schema do
     attribute :source_id,        :string

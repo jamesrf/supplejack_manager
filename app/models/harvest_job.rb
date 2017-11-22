@@ -8,6 +8,10 @@
 
 class HarvestJob < AbstractJob
 
+  self.site = ENV["WORKER_HOST"]
+  self.user = ENV["WORKER_API_KEY"]
+  headers['Authorization'] = "Token token=#{ENV['WORKER_API_KEY']}"
+
   schema do
     attribute :start_time,            :datetime
     attribute :end_time,              :datetime
